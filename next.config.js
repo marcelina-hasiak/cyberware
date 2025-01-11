@@ -5,6 +5,7 @@ const nextConfig = {
 			level: "verbose",
 			fullUrl: true,
 		},
+		typedRoutes: false,
 	},
 };
 
