@@ -11,7 +11,6 @@ type ProductResponseItem = {
 		count: number;
 	};
 	image: string;
-	longDescription: string;
 };
 
 export const getProductsList = async () => {
@@ -53,5 +52,6 @@ const getProductFromProductResponse = (
 			src: product.image,
 			alt: product.title,
 		},
+		description: product.description,
 	};
 };
