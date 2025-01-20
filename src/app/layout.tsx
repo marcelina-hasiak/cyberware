@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ShoppingCart } from "lucide-react";
 import { ActiveLink } from "@/components/atoms/ActiveLink";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,9 +19,10 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<nav className="bg-gray-800 text-white flex justify-center gap-4 p-4">
+				<nav className="flex justify-center gap-4 bg-gray-800 p-4 text-white">
 					<ActiveLink href="/">Homepage</ActiveLink>
 					<ActiveLink href="/products">Products</ActiveLink>
+					<ShoppingCart className="h-6 w-6" />
 				</nav>
 				<section className="mx-auto max-w-2xl px-8 py-12 sm:px-6 sm:py-16 md:max-w-4xl lg:max-w-7xl">
 					{children}
