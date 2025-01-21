@@ -59,9 +59,9 @@ export const getProductsList = async (): Promise<ProductItem[]> => {
 		id: product.id,
 		name: product.name,
 		price: product.price,
-		category: product.categories[0].name,
+		category: product.categories[0]?.name || "",
 		description: product.description,
-		coverImage: {
+		coverImage: product.images[0] && {
 			src: product.images[0].url,
 			alt: product.name,
 		},
