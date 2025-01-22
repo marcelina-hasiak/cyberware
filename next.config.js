@@ -9,6 +9,15 @@ const nextConfig = {
 		typedRoutes: false,
 		mdxRs: true,
 	},
+	redirects: async () => {
+		return [
+			{
+				source: "/products/t-shirts",
+				destination: "/products/t-shirts/1",
+				permanent: false,
+			},
+		];
+	},
 };
 
 const withMDX = require("@next/mdx")();

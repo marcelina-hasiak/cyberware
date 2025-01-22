@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { type Metadata } from "next";
+import { notFound } from "next/navigation";
 import { getProductById } from "@/api/products";
 import { ProductCoverImage } from "@/components/atoms/ProductCoverImage";
 import { ProductDescription } from "@/components/atoms/ProductDescription";
@@ -12,15 +13,17 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
 	const product = await getProductById(params.productId);
 
-	return {
-		title: `${product.name} - E-commerce`,
-		description: `${product.description}`,
-		openGraph: {
-			title: `${product.name} - E-commerce`,
-			description: `${product.description}`,
-			images: [{ url: product.coverImage?.src || "" }],
-		},
-	};
+	return product
+		? {
+				title: `${product.name} - E-commerce`,
+				description: `${product.description}`,
+				openGraph: {
+					title: `${product.name} - E-commerce`,
+					description: `${product.description}`,
+					images: [{ url: product.coverImage?.src || "" }],
+				},
+			}
+		: { title: "Product not found - E-commerce" };
 };
 
 export default async function SinglePageProduct({
@@ -30,6 +33,11 @@ export default async function SinglePageProduct({
 	searchParams: { [key: string]: string | string[] };
 }) {
 	const product = await getProductById(params.productId);
+
+	if (!product) {
+		return notFound();
+	}
+
 	return (
 		<>
 			<article className="max-w-xs">
