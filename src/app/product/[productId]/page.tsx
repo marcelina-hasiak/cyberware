@@ -11,13 +11,14 @@ export const generateMetadata = async ({
 	params: { productId: string };
 }): Promise<Metadata> => {
 	const product = await getProductById(params.productId);
+
 	return {
 		title: `${product.name} - E-commerce`,
 		description: `${product.description}`,
 		openGraph: {
 			title: `${product.name} - E-commerce`,
 			description: `${product.description}`,
-			images: [{ url: product.coverImage.src }],
+			images: [{ url: product.coverImage?.src || "" }],
 		},
 	};
 };
@@ -32,7 +33,9 @@ export default async function SinglePageProduct({
 	return (
 		<>
 			<article className="max-w-xs">
-				<ProductCoverImage {...product.coverImage} />
+				{product.coverImage && (
+					<ProductCoverImage {...product.coverImage} />
+				)}
 				<ProductDescription product={product} />
 			</article>
 			<aside>
