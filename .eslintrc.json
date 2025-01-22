@@ -72,6 +72,12 @@
 			"rules": {
 				"import/no-default-export": "off"
 			}
+		},
+		{
+			"files": ["graphql.ts"],
+			"rules": {
+				"@typescript-eslint/no-unused-vars": "off"
+			}
 		}
 	],
 	"ignorePatterns": ["*.js", "*.jsx"]
